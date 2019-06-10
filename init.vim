@@ -1,58 +1,71 @@
-" Specify a directory for plugins
-" - For Neovim: ~/.local/share/nvim/plugged
-" - Avoid using standard Vim directory names like 'plugin'
+""""""""""""  Initialize plugin system ---------------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
-
-
-" Make sure you use single quotes
-
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-" Plug 'junegunn/vim-easy-align'
-
-" Any valid git URL is allowed
-" Plug 'https://github.com/junegunn/vim-github-dashboard.git'
-
-" Multiple Plug commands can be written in a single line using | separators
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" On-demand loading
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-master branch
 " Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-" Plug 'fatih/vim-go', { 'tag': '*' }
-
-" Plugin options
-" Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
 " Plugin outside ~/.vim/plugged with post-update hook
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Unmanaged plugin (manually installed and updated)
-" Plug '~/my-prototype-plugin'
 
+" AutoAlign plugin
+Plug 'junegunn/vim-easy-align'
 
+" Powerline plugin
+Plug 'vim-airline/vim-airline'
 
+" Snippet plugin and snippet library
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
+" Git difference plugin
+Plug 'airblade/vim-gitgutter'
 
+"""""" On-demand loading
+" Explorer plugin
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Latex plugin
-Plug 'lervag/vimtex'
-
-" Snippet plugin
-Plug 'sirver/ultisnips'
-" Snippets
-Plug 'honza/vim-snippets'
+Plug 'lervag/vimtex', { 'for':  'tex' }
 
 
-" Initialize plugin system
 call plug#end()
 
 
 
 
+
+
+
+""""""""""""  General setting ---------------------------------------------------------
+
+set nocompatible        " Set nocompatible with vi to save resource
+set showmatch           " Show matching brackets
+set ignorecase          " Do case insensitive matching
+set hlsearch            " Highlight search patterns
+set number              " Show line numbers
+set hidden              " Make vim able to manage multiple buffer
+set expandtab           " Convert tabs to white space
+set autoindent          " Indent a new line as the line just typed
+set tabstop=4           " Set tab width
+set softtabstop=4       " Regard multiple white space as tab
+set shiftwidth=4        " Set autoindent width
+"set cc=80               " Set an 80 column border for good coding style
+
+syntax on               " Syntax
+
+" Bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" Show invisible charactors
+set list
+set listchars=tab:▸-,trail:-,eol:¬
+
+
+
+
+
+""""""""""""  Plugin setting ---------------------------------------------------------
 
 " Latex plugin setting
 let g:tex_flavor='latex'
@@ -62,8 +75,16 @@ set conceallevel=1
 let g:tex_conceal='abdmg'
 
 
-
 " Snippet plugin setting
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsJumpForwardTrigger = '<tab>'
 let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+"let g:UltiSnipsSnippetDirectories=["~/.config/nvim/mysnippets"]
+"let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
+
+
+" Explorer plugin setting
+map <C-n> :NERDTreeToggle<CR>
+
+

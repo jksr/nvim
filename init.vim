@@ -25,6 +25,8 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Latex plugin
 Plug 'lervag/vimtex', { 'for':  'tex' }
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 
 call plug#end()
 
@@ -88,3 +90,4 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips","mysnippets"]
 map <C-n> :NERDTreeToggle<CR>
 
 
+let g:deoplete#enable_at_startup = 1
